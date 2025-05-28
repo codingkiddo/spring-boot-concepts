@@ -65,14 +65,35 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>             
+	            <configuration>    
+	                <mainClass>com.springbootconcepts.SpringBootConceptsApplication</mainClass>
+	            </configuration>
+	        </plugin>
+	    </plugins>
+	</build>
+	<!--<build> This is wrong
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				
+				<executions>
+			      <execution>
+			        <goals>
+			          <goal>repackage</goal>
+			        </goals>
+			        <configuration>
+			          <mainClass>com.springbootconcepts.SpringBootConceptsApplication</mainClass>
+			        </configuration>
+			      </execution>
+			    </executions>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 </project>
