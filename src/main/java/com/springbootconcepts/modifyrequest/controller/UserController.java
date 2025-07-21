@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springbootconcepts.modifyrequest.doain.User;
+import com.springbootconcepts.modifyrequest.domain.User;
 import com.springbootconcepts.modifyrequest.emailvalidation.EmailValidation;
 
 @RestController
