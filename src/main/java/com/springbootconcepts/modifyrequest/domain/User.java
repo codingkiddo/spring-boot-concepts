@@ -1,4 +1,4 @@
-package com.springbootconcepts.modifyrequest.doain;
+package com.springbootconcepts.modifyrequest.domain;
 
 public class User {
 
