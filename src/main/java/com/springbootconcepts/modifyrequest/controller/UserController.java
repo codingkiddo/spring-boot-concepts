@@ -1,5 +1,6 @@
 package com.springbootconcepts.modifyrequest.controller;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,16 +19,22 @@ public class UserController {
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @PostMapping(value = "save")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
+    public ResponseEntity<String> saveUser(@RequestBody User user) {
         logger.info("save user info into database");
-        
-        String regexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
         System.out.println(user.getEmail());
-        System.out.println(EmailValidation.patternMatches(user.getEmail(), regexPattern));
-        if ( ! EmailValidation.patternMatches(user.getEmail(), regexPattern) ) {
-        	return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+        
+//        String regexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+//        System.out.println(EmailValidation.patternMatches(user.getEmail(), regexPattern));
+//        if ( ! EmailValidation.patternMatches(user.getEmail(), regexPattern) ) {
+//        	return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+//        }
+        
+        if ( ! EmailValidator.getInstance().isValid(user.getEmail()) ) {
+        	return new ResponseEntity<>("Invalid EmailID", HttpStatus.BAD_REQUEST);
         }
-        ResponseEntity<User> responseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
+        
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("Ok", HttpStatus.CREATED);
         return responseEntity;
     }
 }
